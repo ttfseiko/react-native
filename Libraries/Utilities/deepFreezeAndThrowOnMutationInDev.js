@@ -30,13 +30,13 @@
  * only be used in DEV.
  */
 function deepFreezeAndThrowOnMutationInDev(object: Object) {
-  if (__DEV__) {
-    if (typeof object !== 'object' ||
-        object === null ||
-        Object.isFrozen(object) ||
-        Object.isSealed(object)) {
-      return;
-    }
+//  if (__DEV__) {
+//    if (typeof object !== 'object' ||
+//        object === null ||
+//        Object.isFrozen(object) ||
+//        Object.isSealed(object)) {
+//      return;
+//    }
 
     for (var key in object) {
       if (object.hasOwnProperty(key)) {

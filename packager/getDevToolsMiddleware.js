@@ -14,7 +14,11 @@ var path = require('path');
 
 module.exports = function(options) {
   return function(req, res, next) {
-    if (req.url === '/debugger-ui') {
+    if (req.url === '/version') {
+      const VER_CODE = "1";
+      res.writeHead(200, {'Content-Type': 'text/html'});
+	  res.end(VER_CODE);
+    } else if (req.url === '/debugger-ui') {
       var debuggerPath = path.join(__dirname, 'debugger.html');
       res.writeHead(200, {'Content-Type': 'text/html'});
       fs.createReadStream(debuggerPath).pipe(res);
