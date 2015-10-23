@@ -180,7 +180,10 @@ function openStackFrameInEditor(req, res, next) {
 
 function getDevToolsLauncher(options) {
   return function(req, res, next) {
-    if (req.url === '/debugger-ui') {
+    if (req.url === '/version'){//for dev only
+      res.writeHead(200, {'Content-Type': 'text/html'});
+      res.end("1");
+    } else if (req.url === '/debugger-ui') {
       var debuggerPath = path.join(__dirname, 'debugger.html');
       res.writeHead(200, {'Content-Type': 'text/html'});
       fs.createReadStream(debuggerPath).pipe(res);
