@@ -315,7 +315,8 @@ public class ReactInstanceManager {
   }
 
   private void initializeReactContext() {
-    if (mUseDeveloperSupport) {
+    //if (mUseDeveloperSupport) 
+    {
       if (mDevSupportManager.hasUpToDateJSBundleInCache()) {
         // If there is a up-to-date bundle downloaded from server, always use that
         onJSBundleLoadedFromServer();
@@ -328,11 +329,11 @@ public class ReactInstanceManager {
       }
     }
     // Use JS file from assets
-    recreateReactContext(
-        new JSCJavaScriptExecutor(),
-        JSBundleLoader.createAssetLoader(
-            mApplicationContext.getAssets(),
-            mBundleAssetName));
+    //recreateReactContext(
+    //    new JSCJavaScriptExecutor(),
+    //    JSBundleLoader.createAssetLoader(
+    //        mApplicationContext.getAssets(),
+    //        mBundleAssetName));
   }
 
   private void recreateReactContext(
