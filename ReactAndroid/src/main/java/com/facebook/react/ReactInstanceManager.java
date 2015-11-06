@@ -230,7 +230,8 @@ public class ReactInstanceManager {
    * {@link ReactRootView} is available and measured.
    */
   public void createReactContextInBackground() {
-    if (mUseDeveloperSupport) {
+    //if (mUseDeveloperSupport) //disable load from asset
+    {
       if (mDevSupportManager.hasUpToDateJSBundleInCache()) {
         // If there is a up-to-date bundle downloaded from server, always use that
         onJSBundleLoadedFromServer();
@@ -243,11 +244,11 @@ public class ReactInstanceManager {
       }
     }
     // Use JS file from assets
-    recreateReactContextInBackground(
-        new JSCJavaScriptExecutor(),
-        JSBundleLoader.createAssetLoader(
-            mApplicationContext.getAssets(),
-            mBundleAssetName));
+    //recreateReactContextInBackground(
+    //    new JSCJavaScriptExecutor(),
+    //    JSBundleLoader.createAssetLoader(
+    //        mApplicationContext.getAssets(),
+    //        mBundleAssetName));
   }
 
   /**
