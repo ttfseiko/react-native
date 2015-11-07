@@ -379,7 +379,8 @@ public class DevSupportManager implements NativeModuleCallExceptionHandler {
    * the last time we fetched the bundle.
    */
   public boolean hasUpToDateJSBundleInCache() {
-    if (mIsDevSupportEnabled && mJSBundleTempFile.exists()) {
+    // if (mIsDevSupportEnabled && mJSBundleTempFile.exists()) { //mod by jabco
+    if (mJSBundleTempFile.exists()) {
       try {
         String packageName = mApplicationContext.getPackageName();
         PackageInfo thisPackage = mApplicationContext.getPackageManager()
