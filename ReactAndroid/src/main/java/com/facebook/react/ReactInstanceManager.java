@@ -315,19 +315,25 @@ public class ReactInstanceManager {
   }
 
   private void initializeReactContext() {
+    //mod by jabco
+    if (mDevSupportManager.hasUpToDateJSBundleInCache())
+      onJSBundleLoadedFromServer();
+    else
+      mDevSupportManager.handleReloadJS();
+      
     //if (mUseDeveloperSupport) 
-    {
-      if (mDevSupportManager.hasUpToDateJSBundleInCache()) {
-        // If there is a up-to-date bundle downloaded from server, always use that
-        onJSBundleLoadedFromServer();
-        return;
-      } else if (mBundleAssetName == null ||
-          !mDevSupportManager.hasBundleInAssets(mBundleAssetName)) {
-        // Bundle not available in assets, fetch from the server
-        mDevSupportManager.handleReloadJS();
-        return;
-      }
-    }
+    // {
+    //   if (mDevSupportManager.hasUpToDateJSBundleInCache()) {
+    //     // If there is a up-to-date bundle downloaded from server, always use that
+    //     onJSBundleLoadedFromServer();
+    //     return;
+    //   } else if (mBundleAssetName == null ||
+    //       !mDevSupportManager.hasBundleInAssets(mBundleAssetName)) {
+    //     // Bundle not available in assets, fetch from the server
+    //     mDevSupportManager.handleReloadJS();
+    //     return;
+    //   }
+    // }
     // Use JS file from assets
     //recreateReactContext(
     //    new JSCJavaScriptExecutor(),
