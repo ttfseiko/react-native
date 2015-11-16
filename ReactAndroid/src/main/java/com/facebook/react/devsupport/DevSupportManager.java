@@ -379,29 +379,29 @@ public class DevSupportManager implements NativeModuleCallExceptionHandler {
    * the last time we fetched the bundle.
    */
   public boolean hasUpToDateJSBundleInCache() {
-    // if (mIsDevSupportEnabled && mJSBundleTempFile.exists()) { //mod by jabco
-    if (mJSBundleTempFile.exists()) {
-      try {
-        String packageName = mApplicationContext.getPackageName();
-        PackageInfo thisPackage = mApplicationContext.getPackageManager()
-            .getPackageInfo(packageName, 0);
-        if (mJSBundleTempFile.lastModified() > thisPackage.lastUpdateTime) {
-          // Base APK has not been updated since we donwloaded JS, but if app is using exopackage
-          // it may only be a single dex that has been updated. We check for exopackage dir update
-          // time in that case.
-          File exopackageDir = new File(
-              String.format(Locale.US, EXOPACKAGE_LOCATION_FORMAT, packageName));
-          if (exopackageDir.exists()) {
-            return mJSBundleTempFile.lastModified() > exopackageDir.lastModified();
-          }
-          return true;
-        }
-      } catch (PackageManager.NameNotFoundException e) {
-        // Ignore this error and just fallback to loading JS from assets
-        FLog.e(ReactConstants.TAG, "DevSupport is unable to get current app info");
-      }
-    }
-    return false;
+    return mJSBundleTempFile.exists();//mod by jabco
+    // if (mIsDevSupportEnabled && mJSBundleTempFile.exists()) {
+    //   try {
+    //     String packageName = mApplicationContext.getPackageName();
+    //     PackageInfo thisPackage = mApplicationContext.getPackageManager()
+    //         .getPackageInfo(packageName, 0);
+    //     if (mJSBundleTempFile.lastModified() > thisPackage.lastUpdateTime) {
+    //       // Base APK has not been updated since we donwloaded JS, but if app is using exopackage
+    //       // it may only be a single dex that has been updated. We check for exopackage dir update
+    //       // time in that case.
+    //       File exopackageDir = new File(
+    //           String.format(Locale.US, EXOPACKAGE_LOCATION_FORMAT, packageName));
+    //       if (exopackageDir.exists()) {
+    //         return mJSBundleTempFile.lastModified() > exopackageDir.lastModified();
+    //       }
+    //       return true;
+    //     }
+    //   } catch (PackageManager.NameNotFoundException e) {
+    //     // Ignore this error and just fallback to loading JS from assets
+    //     FLog.e(ReactConstants.TAG, "DevSupport is unable to get current app info");
+    //   }
+    // }
+    // return false;
   }
 
   /**
