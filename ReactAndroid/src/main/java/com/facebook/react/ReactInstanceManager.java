@@ -318,9 +318,7 @@ public class ReactInstanceManager {
     //mod by jabco
     if (mDevSupportManager.hasUpToDateJSBundleInCache())
       onJSBundleLoadedFromServer();
-    else
-      mDevSupportManager.handleReloadJS();
-      
+
     //if (mUseDeveloperSupport) 
     // {
     //   if (mDevSupportManager.hasUpToDateJSBundleInCache()) {
