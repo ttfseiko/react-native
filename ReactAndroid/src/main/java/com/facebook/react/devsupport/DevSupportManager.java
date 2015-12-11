@@ -467,7 +467,7 @@ public class DevSupportManager implements NativeModuleCallExceptionHandler {
     progressDialog.setMessage(mApplicationContext.getString(
         mIsUsingJSProxy ? R.string.catalyst_remotedbg_message : R.string.catalyst_jsload_message));
     progressDialog.setIndeterminate(true);
-    progressDialog.setCancelable(false);
+    progressDialog.setCancelable(true);
     progressDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
     progressDialog.show();
 
