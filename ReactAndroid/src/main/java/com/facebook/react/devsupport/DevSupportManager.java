@@ -21,6 +21,7 @@ import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageInfo;
@@ -464,11 +465,16 @@ public class DevSupportManager implements NativeModuleCallExceptionHandler {
 
     ProgressDialog progressDialog = new ProgressDialog(mApplicationContext);
     progressDialog.setTitle(R.string.catalyst_jsload_title);
-    progressDialog.setMessage(mApplicationContext.getString(
-        mIsUsingJSProxy ? R.string.catalyst_remotedbg_message : R.string.catalyst_jsload_message));
+    progressDialog.setMessage("正在载入数据...");
     progressDialog.setIndeterminate(true);
     progressDialog.setCancelable(true);
+    progressDialog.setCanceledOnTouchOutside(false);
     progressDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+    progressDialog.setOnCancelListener(new OnCancelListener() {
+      public void onCancel(DialogInterface dialog) {
+        System.exit(0);
+      }
+    });
     progressDialog.show();
 
     if (mIsUsingJSProxy) {
